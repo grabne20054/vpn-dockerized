@@ -3,7 +3,7 @@ FROM debian:trixie-slim
 USER root
 CMD ["/bin/bash"]
 
-RUN apt update && apt install -y openvpn easy-rsa openssh-server ufw passwd nano
+RUN apt update && apt install -y openvpn easy-rsa openssh-server ufw passwd nano iproute2
 
 RUN echo 'root:changeme' | chpasswd && \
     sed -i 's/^#\?PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -34,11 +34,6 @@ COPY automate.sh ./automate.sh
 RUN chmod +x ./automate.sh
 
 COPY configs/server.conf /etc/openvpn/server/server.conf
-
-# not copy need to be generated!!
-#COPY configs/ca.crt /etc/openvpn/server/ca.crt
-#COPY configs/server.crt /etc/openvpn/server/server.crt
-#COPY configs/server.key /etc/openvpn/server/server.key
 
 COPY configs/base.conf /root/client-configs/base.conf
 
