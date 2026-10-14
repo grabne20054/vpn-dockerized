@@ -1,0 +1,7 @@
+services:
+  vpn:
+    image: vpn
+
+  vpn-ca:
+    image: vpn-ca
+  
