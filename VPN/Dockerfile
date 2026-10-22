@@ -47,7 +47,7 @@ RUN echo net.ipv4.ip_forward = 1 > /etc/sysctl.conf
 COPY configs/before.rules /etc/ufw/before.rules
 
 # for netwoking into localnet
-RUN iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth1 -j MASQUERADE
+RUN iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j MASQUERADE
 
 RUN echo DEFAULT_FORWARD_POLICY="ACCEPT" > /etc/default/ufw
 
